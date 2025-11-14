@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <time.h>
 
+#define TAMANHO 500000
+
 // Prototipos
 
 void Insertiontort(int * V, int N);
@@ -13,10 +15,20 @@ int main(){
 
     system("cls");
 
-    int conjunto[] = {1, 9, 7, 8, 5, 2};
-    int Tamanho = sizeof(conjunto) / sizeof(int);
-    Insertiontort(conjunto, Tamanho);
-    ExibirVetor(conjunto, Tamanho);
+    int conjunto[TAMANHO];
+    
+    srand(time(NULL));
+    for(int i = 0; i < TAMANHO; i++){
+        conjunto[i] = rand() %100;
+    }
+
+    clock_t T0 = clock(); 
+    Insertiontort(conjunto, TAMANHO);
+    clock_t TF = clock();
+
+    ExibirVetor(conjunto, TAMANHO);
+    printf("\nTempo de CPU: %f\n", (double)(TF - T0) / CLOCKS_PER_SEC);
+
     
 }
 
